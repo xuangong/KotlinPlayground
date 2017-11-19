@@ -1,4 +1,5 @@
 import java.math.BigDecimal
+import java.util.concurrent.locks.Lock
 
 // sensible type
 val name = "Tom Cruise"
@@ -42,6 +43,15 @@ fun using(obj: Closeable, block: () -> Unit) {
         block()
     } finally {
         obj.close()
+    }
+}
+
+inline fun synchronized(lock: Lock, body: () -> Unit) {
+    lock.lock()
+    try {
+        body()
+    } finally {
+        lock.unlock();
     }
 }
 
