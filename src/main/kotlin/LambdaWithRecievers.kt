@@ -10,6 +10,7 @@ data class StatusResult(var statusCode: Int, var statusText: String)
 
 class RouteHandler(var request: Request, val response: Response)
 
+//
 fun get(path: String, func: RouteHandler.() -> Unit) = func
 
 fun anotherGet(path: String, func: (Request) -> Response) = func
